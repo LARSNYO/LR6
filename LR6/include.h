@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
 #include <fstream>
 #include <memory>
@@ -11,27 +11,27 @@ private:
 	static int operationsCount;
 
 public:
-	//Конструктор с параметрами
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 	FractionNumber(int num, int denom) : numerator(new int(num)), denominator(new int(denom)) {
 		if (denom == 0) {
 			throw std::invalid_argument("Denominator cannot be zero.");
 		}
 	}
 
-	//Конструктор копирования
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	FractionNumber(const FractionNumber& otherFraction) : numerator(new int(*otherFraction.numerator)), denominator(new int(*otherFraction.denominator)) {}
 
-	//Конструктор по умолчанию
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	FractionNumber() : FractionNumber(5, 9) {}
 
-	//Виртуальный деструктор
+	//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 	virtual ~FractionNumber() {
 		delete numerator;
 		delete denominator;
 		std::cout << "Fraction object is being destroyed." << std::endl;
 	}
 
-	//Виртуальный метод для отображения дроби
+	//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґСЂРѕР±Рё
 	virtual void display() const {
 		std::cout << *numerator << "/" << *denominator << std::endl;
 	}
@@ -104,12 +104,12 @@ public:
 
 	//Overloading the float cast
 	operator float() const {
-		return static_cast<float>(*numerator) / static_cast<float>(*denominator); //static_cast - преобразователь числового типа
+		return static_cast<float>(*numerator) / static_cast<float>(*denominator); //static_cast - РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚РµР»СЊ С‡РёСЃР»РѕРІРѕРіРѕ С‚РёРїР°
 	}
 
 	//Assignment operator overloading
 	FractionNumber& operator=(const FractionNumber& otherFraction) {
-		if (this != &otherFraction) { //делаем проверку чтобы оператор объект не присваивался сам себе, если этого не происходит, то мы освобождаем память, чтобы не потерять ссылки на уже выделенные участки памяти.
+		if (this != &otherFraction) { //РґРµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ С‡С‚РѕР±С‹ РѕРїРµСЂР°С‚РѕСЂ РѕР±СЉРµРєС‚ РЅРµ РїСЂРёСЃРІР°РёРІР°Р»СЃСЏ СЃР°Рј СЃРµР±Рµ, РµСЃР»Рё СЌС‚РѕРіРѕ РЅРµ РїСЂРѕРёСЃС…РѕРґРёС‚, С‚Рѕ РјС‹ РѕСЃРІРѕР±РѕР¶РґР°РµРј РїР°РјСЏС‚СЊ, С‡С‚РѕР±С‹ РЅРµ РїРѕС‚РµСЂСЏС‚СЊ СЃСЃС‹Р»РєРё РЅР° СѓР¶Рµ РІС‹РґРµР»РµРЅРЅС‹Рµ СѓС‡Р°СЃС‚РєРё РїР°РјСЏС‚Рё.
 			delete numerator;
 			delete denominator;
 
@@ -199,13 +199,13 @@ public:
 };
 
 
-// Класс CalculatedFraction
+// РљР»Р°СЃСЃ CalculatedFraction
 class CalculatedFraction : public FractionNumber {
 public:
 	CalculatedFraction(int num, int denom) : FractionNumber(num, denom) {}
 };
 
-// Класс MixedFraction
+// РљР»Р°СЃСЃ MixedFraction
 class MixedFraction : public FractionNumber {
 private:
 	int wholePart;
@@ -223,35 +223,35 @@ public:
 	}
 };
 
-// Узел списка
+// РЈР·РµР» СЃРїРёСЃРєР°
 struct Node {
-	std::shared_ptr<FractionNumber> data; // Данные узла
-	Node* next; // Указатель на следующий узел
+	std::shared_ptr<FractionNumber> data; // Р”Р°РЅРЅС‹Рµ СѓР·Р»Р°
+	Node* next; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СѓР·РµР»
 
-	// Конструктор узла
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СѓР·Р»Р°
 	Node(std::shared_ptr<FractionNumber> frac) : data(frac), next(nullptr) {}
 };
 
-// Класс Deque
+// РљР»Р°СЃСЃ Deque
 class Deque {
 private:
-	Node* head; // Указатель на голову списка
-	Node* tail; // Указатель на хвост списка
+	Node* head; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
+	Node* tail; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚ СЃРїРёСЃРєР°
 
 public:
-	// Конструктор по умолчанию
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	Deque() : head(nullptr), tail(nullptr) {}
 
-	// Деструктор
+	// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 	~Deque() {
-		while (head) { // Удаление всех узлов списка
+		while (head) { // РЈРґР°Р»РµРЅРёРµ РІСЃРµС… СѓР·Р»РѕРІ СЃРїРёСЃРєР°
 			Node* temp = head;
 			head = head->next;
 			delete temp;
 		}
 	}
 
-	// Метод добавления элемента в начало
+	// РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РЅР°С‡Р°Р»Рѕ
 	void addFront(std::shared_ptr<FractionNumber> frac) {
 		Node* newNode = new Node(frac);
 		if (!head) {
@@ -263,7 +263,7 @@ public:
 		}
 	}
 
-	// Метод добавления элемента в конец
+	// РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС†
 	void addRear(std::shared_ptr<FractionNumber> frac) {
 		Node* newNode = new Node(frac);
 		if (!tail) {
@@ -275,7 +275,7 @@ public:
 		}
 	}
 
-	// Метод удаления элемента из начала
+	// РњРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· РЅР°С‡Р°Р»Р°
 	void removeFront() {
 		if (!head) {
 			std::cerr << "Deque is empty." << std::endl;
@@ -289,7 +289,7 @@ public:
 		delete temp;
 	}
 
-	// Метод вставки элемента по индексу
+	// РњРµС‚РѕРґ РІСЃС‚Р°РІРєРё СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	void insertAt(int index, std::shared_ptr<FractionNumber> frac) {
 		if (index == 0) {
 			addFront(frac);
@@ -311,7 +311,7 @@ public:
 		}
 	}
 
-	// Метод удаления элемента по индексу
+	// РњРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	void removeAt(int index) {
 		if (index == 0 && head) {
 			removeFront();
@@ -333,7 +333,7 @@ public:
 		delete temp;
 	}
 
-	// Метод поиска элемента по индексу
+	// РњРµС‚РѕРґ РїРѕРёСЃРєР° СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	std::shared_ptr<FractionNumber> find(int index) {
 		Node* current = head;
 		for (int i = 0; i < index && current; ++i) {
@@ -346,7 +346,7 @@ public:
 		return current->data;
 	}
 
-	// Метод отображения всех элементов списка
+	// РњРµС‚РѕРґ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°
 	void displayAll() const {
 		Node* current = head;
 		while (current) {

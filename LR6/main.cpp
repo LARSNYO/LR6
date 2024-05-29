@@ -1,4 +1,4 @@
-#include "include.h"
+п»ї#include "include.h"
 
 int FractionNumber::operationsCount = 0;
 
@@ -60,17 +60,17 @@ int main() {
 	}
 
 	try {
-		// Создание объектов различных классов
+		// РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚РѕРІ СЂР°Р·Р»РёС‡РЅС‹С… РєР»Р°СЃСЃРѕРІ
 		std::shared_ptr<FractionNumber> frac1 = std::make_shared<FractionNumber>(3, 4);
 		std::shared_ptr<FractionNumber> frac2 = std::make_shared<CalculatedFraction>(5, 6);
 		std::shared_ptr<FractionNumber> frac3 = std::make_shared<MixedFraction>(2, 7, 8);
 
-		// Добавление элементов в дек
+		// Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РІ РґРµРє
 		Deque deque;
 		deque.addFront(frac1);
 		deque.addRear(frac2);
 
-		// Попытка вставки элемента на индекс 1
+		// РџРѕРїС‹С‚РєР° РІСЃС‚Р°РІРєРё СЌР»РµРјРµРЅС‚Р° РЅР° РёРЅРґРµРєСЃ 1
 		try {
 			deque.insertAt(1, frac3);
 		}
@@ -78,11 +78,11 @@ int main() {
 			std::cerr << "Insert error: " << e.what() << std::endl;
 		}
 
-		// Отображение элементов дека
+		// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РґРµРєР°
 		std::cout << "Deque after adding elements: " << std::endl;
 		deque.displayAll();
 
-		// Удаление элемента из начала дека
+		// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РёР· РЅР°С‡Р°Р»Р° РґРµРєР°
 		try {
 			deque.removeFront();
 			std::cout << "\nDeque after removing front element: " << std::endl;
@@ -92,9 +92,9 @@ int main() {
 			std::cerr << "Remove front error: " << e.what() << std::endl;
 		}
 
-		// Удаление элемента по индексу
+		// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 		try {
-			deque.removeAt(1); // Изменено на корректный индекс 1
+			deque.removeAt(1); // РР·РјРµРЅРµРЅРѕ РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ РёРЅРґРµРєСЃ 1
 			std::cout << "\nDeque after removing element at index 1:" << std::endl;
 			deque.displayAll();
 		}
@@ -102,7 +102,7 @@ int main() {
 			std::cerr << "Remove at error: " << e.what() << std::endl;
 		}
 
-		// Поиск элемента по индексу
+		// РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 		try {
 			std::shared_ptr<FractionNumber> found = deque.find(0);
 			if (found) {
